@@ -1,0 +1,150 @@
+/* Reset básico para evitar problemas de estilo por defecto */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Fondo y estructura general */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin-top: 0;
+  }
+  
+  /* Sección del video ocupa toda la pantalla */
+  .video-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;  /* Video ocupa toda la altura de la pantalla */
+    overflow: hidden;
+  }
+  
+  .video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* Asegura que el video cubra toda el área sin deformarse */
+  }
+  
+  /* Cabecera que aparece cuando se hace scroll */
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    transform: translateY(-100%);  /* Inicialmente está oculta */
+    transition: transform 0.3s ease;
+  }
+  
+  .header.show {
+    transform: translateY(0);  /* Aparece al hacer scroll */
+  }
+  
+  .header .logo img {
+    max-width: 150px;
+  }
+  
+  .header .login-btn .btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .header .login-btn .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Información sobre el rally */
+  .info-rally {
+    background-color: #fff;
+    padding: 40px;
+    text-align: center;
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .info-rally h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .info-rally p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666;
+  }
+  
+  /* Sección de enlaces */
+  .enlaces {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .enlaces h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .enlaces .btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .enlaces .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Estilos para la galería */
+  .galeria {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .galeria h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #222;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  footer p {
+    font-size: 1rem;
+  }
+  
