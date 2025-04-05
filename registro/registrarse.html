@@ -14,17 +14,16 @@
 </head>
 <body>
 
-    <!-- Formulario de registro -->
     <h2>Regístrate como participante</h2>
     <form id="registroForm">
         <label for="nombre">Nombre:</label><br>
-        <input type="text" id="nombre" name="nombre" required><br><br>
+        <input type="text" id="nombre" name="nombre" required autocomplete="name"><br><br>
         
         <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
+        <input type="email" id="email" name="email" required autocomplete="email"><br><br>
         
         <label for="contraseña">Contraseña:</label><br>
-        <input type="password" id="contraseña" name="contraseña" required><br><br>
+        <input type="password" id="contraseña" name="contraseña" required autocomplete="current-password"><br><br>
         
         <button type="submit">Registrarse</button>
     </form>
@@ -45,7 +44,7 @@
                 contraseña: contraseña
             };
 
-            fetch('registo/registro.php', { // CORREGIDO: asegúrate que el archivo se llama así
+            fetch('registro/registro.php', {  // RUTA CORREGIDA
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -61,12 +60,11 @@
                 }
             })
             .catch(error => {
-                document.getElementById('mensaje').textContent = "Error en la conexión: " + error;
                 console.error("Error en la conexión:", error);
+                document.getElementById('mensaje').textContent = "Error en la conexión.";
             });
         });
     </script>
 
 </body>
 </html>
-
