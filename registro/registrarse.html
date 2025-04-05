@@ -2,21 +2,40 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Registro</title>
+  <title>Registro de Participantes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #fff;
+      padding: 2em;
+    }
+    input, button {
+      margin: 0.5em 0;
+      padding: 0.5em;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
-  <h2>Formulario de Registro</h2>
+  <h2>Regístrate como participante</h2>
   <form id="registroForm">
-    <input type="text" id="nombre" name="nombre" placeholder="Nombre" required><br>
-    <input type="email" id="email" name="email" placeholder="Correo" required><br>
-    <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña" required><br>
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="contraseña">Contraseña:</label>
+    <input type="password" id="contraseña" name="contraseña" required autocomplete="new-password">
+
     <button type="submit">Registrarse</button>
   </form>
 
   <p id="mensaje"></p>
 
   <script>
-    document.getElementById('registroForm').addEventListener('submit', function(e) {
+    document.getElementById('registroForm').addEventListener('submit', async function(e) {
       e.preventDefault();
 
       const nombre = document.getElementById('nombre').value;
@@ -25,23 +44,22 @@
 
       const datos = { nombre, email, contraseña };
 
-      fetch('registro.php', {  // ✅ Ruta correcta dentro de la misma carpeta
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(datos)
-      })
-      .then(response => response.json())
-      .then(data => {
+      try {
+        const response = await fetch('registro.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(datos)
+        });
+
+        const data = await response.json(); // Verificamos que sea JSON válido
+
         document.getElementById('mensaje').textContent = data.success
-          ? "Registro exitoso ✅"
-          : "Error: " + data.message;
-      })
-      .catch(error => {
-        document.getElementById('mensaje').textContent = "Error de conexión 🚫";
-        console.error("Error:", error);
-      });
+          ? "✅ Registro exitoso"
+          : "❌ Error: " + data.message;
+      } catch (error) {
+        console.error("Error en la conexión:", error);
+        document.getElementById('mensaje').textContent = "⚠️ Error en la conexión o respuesta no válida";
+      }
     });
   </script>
 </body>
