@@ -1,56 +1,52 @@
 <?php
-// Mostrar todos los errores para depuración
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// Configuración de la base de datos
+// Conexión a la base de datos
 $host = 'localhost';
 $user = 'root';
-$password = ''; // Cambia la contraseña si la tienes configurada
-$dbname = 'rally_andaluz'; // Nombre de tu base de datos
+$password = ''; // Ajusta si tienes contraseña
+$dbname = 'rally_andaluz';
 
-// Crear la conexión a la base de datos
 $conn = new mysqli($host, $user, $password, $dbname);
 
-// Comprobar la conexión
 if ($conn->connect_error) {
     die(json_encode(['success' => false, 'message' => 'Error de conexión: ' . $conn->connect_error]));
 }
 
-// Obtener los datos del formulario en formato JSON
+// Recibir datos en JSON
 $data = json_decode(file_get_contents("php://input"), true);
 
-// Verificar que se recibieron los datos correctamente
+// Verificar datos
 if (isset($data['nombre'], $data['email'], $data['contraseña'])) {
-    // Sanitizar los datos
     $nombre = $conn->real_escape_string($data['nombre']);
     $email = $conn->real_escape_string($data['email']);
-    $contraseña = password_hash($data['contraseña'], PASSWORD_DEFAULT); // Hashear la contraseña
+    $contraseña = password_hash($data['contraseña'], PASSWORD_DEFAULT);
 
-    // Consultar si el email ya está registrado
-    $checkEmailQuery = "SELECT id FROM usuarios WHERE email = '$email'";
-    $result = $conn->query($checkEmailQuery);
+    // Verificar si ya existe el email
+    $check = $conn->prepare("SELECT id FROM usuarios WHERE email = ?");
+    $check->bind_param("s", $email);
+    $check->execute();
+    $check->store_result();
 
-    if ($result->num_rows > 0) {
-        // El email ya está registrado
+    if ($check->num_rows > 0) {
         echo json_encode(['success' => false, 'message' => 'Este email ya está registrado.']);
     } else {
-        // Insertar el nuevo usuario en la base de datos
-        $query = "INSERT INTO usuarios (nombre, email, contraseña, rol) VALUES ('$nombre', '$email', '$contraseña', 'participante')";
+        // Insertar usuario
+        $stmt = $conn->prepare("INSERT INTO usuarios (nombre, email, contraseña, rol) VALUES (?, ?, ?, 'participante')");
+        $stmt->bind_param("sss", $nombre, $email, $contraseña);
 
-        if ($conn->query($query) === TRUE) {
-            // Responder con éxito
+        if ($stmt->execute()) {
             echo json_encode(['success' => true, 'message' => 'Usuario registrado exitosamente']);
         } else {
-            // Si hay un error con la inserción
             echo json_encode(['success' => false, 'message' => 'Error al registrar el usuario']);
         }
+        $stmt->close();
     }
+    $check->close();
 } else {
-    // Si faltan datos en la solicitud
     echo json_encode(['success' => false, 'message' => 'Faltan datos']);
 }
 
-// Cerrar la conexión a la base de datos
 $conn->close();
 ?>

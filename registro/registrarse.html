@@ -29,25 +29,23 @@
         <button type="submit">Registrarse</button>
     </form>
 
+    <p id="mensaje"></p>
+
     <script>
-        // Código JavaScript para manejar el formulario de registro
         document.getElementById('registroForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Obtener los valores del formulario
             const nombre = document.getElementById('nombre').value;
             const email = document.getElementById('email').value;
             const contraseña = document.getElementById('contraseña').value;
 
-            // Crear el objeto con los datos a enviar
             const datos = {
                 nombre: nombre,
                 email: email,
                 contraseña: contraseña
             };
 
-            // Enviar los datos al servidor utilizando fetch
-            fetch('registo/registro.php', {
+            fetch('registo/registro.php', { // CORREGIDO: asegúrate que el archivo se llama así
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -57,16 +55,18 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    alert('Usuario registrado exitosamente');
+                    document.getElementById('mensaje').textContent = "¡Registro exitoso!";
                 } else {
-                    alert('Error: ' + data.message);
+                    document.getElementById('mensaje').textContent = "Error: " + data.message;
                 }
             })
             .catch(error => {
-                console.error('Error en la conexión:', error);
+                document.getElementById('mensaje').textContent = "Error en la conexión: " + error;
+                console.error("Error en la conexión:", error);
             });
         });
     </script>
 
 </body>
 </html>
+
