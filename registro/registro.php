@@ -1,19 +1,20 @@
 <?php
-// Muestra todos los errores (solo para depuración)
+// Mostrar todos los errores para depuración
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// Configuración de la base de datos en Hostalia
-$host = 'localhost';  // Esto generalmente es 'localhost' en Hostalia, pero si tienes un servidor de base de datos remoto, pon la IP o el dominio aquí
-$user = 'root';       // Cambia esto con el nombre de usuario de tu base de datos en Hostalia
-$password = '';       // Cambia esto si tienes una contraseña configurada en tu base de datos
-$dbname = 'rally_andaluz';  // Nombre de la base de datos
+// Configuración de la base de datos
+$host = 'localhost';  // Asegúrate de que este sea el host correcto (puede ser localhost o una IP o dominio si es remoto)
+$user = 'root';       // Cambia esto por tu usuario de base de datos
+$password = '';       // Cambia esto si tienes una contraseña configurada
+$dbname = 'rally_andaluz';  // El nombre de tu base de datos
 
 // Intentar conectar a la base de datos
 $conn = new mysqli($host, $user, $password, $dbname);
 
 // Verifica si hubo un error en la conexión
 if ($conn->connect_error) {
+    // Si hay error de conexión, se muestra en formato JSON
     echo json_encode(['success' => false, 'message' => 'Error de conexión: ' . $conn->connect_error]);
     exit; // Detener ejecución si hay error de conexión
 }
@@ -23,6 +24,7 @@ $datos = json_decode(file_get_contents("php://input"), true);
 
 // Verifica que los datos necesarios están presentes
 if (!isset($datos['nombre'], $datos['email'], $datos['contraseña'])) {
+    // Si faltan datos, devuelve un error en JSON
     echo json_encode(['success' => false, 'message' => 'Faltan datos en la solicitud.']);
     exit;
 }
@@ -37,6 +39,7 @@ $checkEmailQuery = "SELECT id FROM usuarios WHERE email = '$email'";
 $result = $conn->query($checkEmailQuery);
 
 if ($result->num_rows > 0) {
+    // Si el email ya está registrado, responder con error
     echo json_encode(['success' => false, 'message' => 'Este email ya está registrado.']);
     $conn->close();
     exit;
@@ -46,10 +49,13 @@ if ($result->num_rows > 0) {
 $insertQuery = "INSERT INTO usuarios (nombre, email, contraseña, rol) VALUES ('$nombre', '$email', '$contraseña', 'participante')";
 
 if ($conn->query($insertQuery) === TRUE) {
+    // Si la inserción fue exitosa, responder con éxito en formato JSON
     echo json_encode(['success' => true, 'message' => 'Usuario registrado correctamente.']);
 } else {
+    // Si hay un error al insertar, responder con un mensaje de error
     echo json_encode(['success' => false, 'message' => 'Error al registrar el usuario: ' . $conn->error]);
 }
 
-$conn->close(); // Cerrar la conexión
+// Cerrar la conexión
+$conn->close();
 ?>
