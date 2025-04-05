@@ -1,70 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rally Fotográfico</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: black;
-            color: white;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Registro</title>
 </head>
 <body>
+  <h2>Formulario de Registro</h2>
+  <form id="registroForm">
+    <input type="text" id="nombre" name="nombre" placeholder="Nombre" required><br>
+    <input type="email" id="email" name="email" placeholder="Correo" required><br>
+    <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña" required><br>
+    <button type="submit">Registrarse</button>
+  </form>
 
-    <h2>Regístrate como participante</h2>
-    <form id="registroForm">
-        <label for="nombre">Nombre:</label><br>
-        <input type="text" id="nombre" name="nombre" required autocomplete="name"><br><br>
-        
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required autocomplete="email"><br><br>
-        
-        <label for="contraseña">Contraseña:</label><br>
-        <input type="password" id="contraseña" name="contraseña" required autocomplete="current-password"><br><br>
-        
-        <button type="submit">Registrarse</button>
-    </form>
+  <p id="mensaje"></p>
 
-    <p id="mensaje"></p>
+  <script>
+    document.getElementById('registroForm').addEventListener('submit', function(e) {
+      e.preventDefault();
 
-    <script>
-        document.getElementById('registroForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+      const nombre = document.getElementById('nombre').value;
+      const email = document.getElementById('email').value;
+      const contraseña = document.getElementById('contraseña').value;
 
-            const nombre = document.getElementById('nombre').value;
-            const email = document.getElementById('email').value;
-            const contraseña = document.getElementById('contraseña').value;
+      const datos = { nombre, email, contraseña };
 
-            const datos = {
-                nombre: nombre,
-                email: email,
-                contraseña: contraseña
-            };
-
-            fetch('registro/registro.php', {  // RUTA CORREGIDA
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(datos),
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    document.getElementById('mensaje').textContent = "¡Registro exitoso!";
-                } else {
-                    document.getElementById('mensaje').textContent = "Error: " + data.message;
-                }
-            })
-            .catch(error => {
-                console.error("Error en la conexión:", error);
-                document.getElementById('mensaje').textContent = "Error en la conexión.";
-            });
-        });
-    </script>
-
+      fetch('registro.php', {  // ✅ Ruta correcta dentro de la misma carpeta
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('mensaje').textContent = data.success
+          ? "Registro exitoso ✅"
+          : "Error: " + data.message;
+      })
+      .catch(error => {
+        document.getElementById('mensaje').textContent = "Error de conexión 🚫";
+        console.error("Error:", error);
+      });
+    });
+  </script>
 </body>
 </html>
