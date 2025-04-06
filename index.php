@@ -24,7 +24,7 @@
       <img src="logo.png" alt="Logo Rally" />
     </div>
     <div class="login-btn">
-      <a href="login/login.html" class="btn">Acceder</a>
+      <a href="registro/registroGeneral.php" class="btn">Acceder</a>
     </div>
   </header>
 
