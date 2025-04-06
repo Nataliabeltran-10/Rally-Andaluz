@@ -1,8 +1,8 @@
 <?php
 // Configuración de la conexión a la base de datos
 $host = "localhost";  // Cambia si tu base de datos está en otro servidor
-$dbname = "rally_andaluz";  // Reemplaza con el nombre de tu base de datos
-$username = "root";  // Usuario de la base de datos
+$dbname = "10868095_rally_andaluz";  // Reemplaza con el nombre de tu base de datos
+$username = "natalia";  // Usuario de la base de datos
 $password = "";  // Contraseña (si tienes una)
 
 // Intenta la conexión con PDO
