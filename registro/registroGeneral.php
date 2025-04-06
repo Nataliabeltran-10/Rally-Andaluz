@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <label for="rol">Tipo de usuario:</label>
         <select id="rol" name="rol" required>
             <option value="participante">Participante</option>
-            <option value="general">Usuario General</option>
+            <option value="usuario_normal">Usuario Normal</option>
         </select><br><br>
 
         <input type="submit" value="Registrar">
