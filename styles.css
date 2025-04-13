@@ -1,55 +1,46 @@
-/* FUENTE BONITA */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Montserrat', sans-serif;
-  background: image('fondo.jpg') no-repeat center center fixed;
-  background-size: cover;
+/* Fondo desde HTML */
+.background-wrapper {
   position: relative;
+  width: 100%;
   min-height: 100vh;
-  color: white;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-/* Capa gris semitransparente sobre toda la página */
-body::before {
-  content: "";
-  position: fixed;
+/* Capa gris translúcida */
+.background-overlay {
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
   height: 100%;
-  background-color: rgba(50, 50, 50, 0.6); /* gris translúcido */
-  z-index: -1; /* detrás del contenido */
+  width: 100%;
+  background-color: rgba(50, 50, 50, 0.6);
+  z-index: 1;
 }
 
-/* Contenido general */
+/* Contenido principal */
 .main-content {
-  padding: 40px;
+  position: relative;
+  z-index: 2;
   text-align: center;
+  padding: 60px 20px;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
 }
 
-/* TÍTULOS NARANJAS */
+/* Títulos */
 h1, h2 {
   color: orange;
-  font-weight: 700;
+  font-size: 3rem;
   margin-bottom: 20px;
 }
 
-/* Texto blanco y limpio */
+/* Párrafos */
 p {
   font-size: 1.2rem;
   line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
   color: #f0f0f0;
-}
-
-/* Ocultamos el video */
-.video-section, .video-container, video {
-  display: none;
 }

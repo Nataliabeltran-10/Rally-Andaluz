@@ -8,6 +8,19 @@
 </head>
 <body>
 
+  <div class="background-wrapper" style="background-image: url('fotos/fondo.jpg');">
+    <div class="background-overlay"></div>
+
+    <div class="main-content">
+      <h1>Bienvenido al Rally</h1>
+      <p>Explora toda la información sobre este evento increíble. Noticias, rutas, participantes y mucho más.</p>
+
+      <!-- Aquí puedes seguir con más contenido si quieres -->
+    </div>
+  </div>
+
+
+
 <section class="background-section">
   <div class="background-overlay"></div>
   <div class="background-content">
