@@ -8,15 +8,13 @@
 </head>
 <body>
 
-  <!-- Sección del video que ocupa toda la pantalla -->
-  <section class="video-section">
-    <div class="video-container">
-      <video autoplay muted loop>
-        <source src="VideoProvisional.mp4" type="video/mp4">
-        Tu navegador no soporta este formato de video.
-      </video>
-    </div>
-  </section>
+<section class="background-section">
+  <div class="background-overlay"></div>
+  <div class="background-content">
+    <h1>Título Principal</h1>
+    <p>Bienvenido a nuestra página. Aquí puedes encontrar toda la información sobre el evento de rally. Explora las secciones para saber más.</p>
+  </div>
+</section>
 
   <!-- Cabecera que aparece cuando se hace scroll -->
   <header class="header">
