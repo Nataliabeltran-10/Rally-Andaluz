@@ -6,11 +6,22 @@
   <title>Inicio</title>
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
+  <style>
+    .hero {
+      background-image: url('fotos/fondo.jpg');
+    }
+  </style>
 </head>
 <body>
   <header class="header">
     <div class="logo">Mi Sitio</div>
-    <div class="menu">Explorar | Licencia | Únete</div>
+    <nav class="nav-buttons">
+      <a href="#">Explorar</a>
+      <a href="#">Licencia</a>
+      <a href="#">Subir foto</a>
+      <a href="#">Iniciar sesión</a>
+      <a href="#" class="btn">Únete</a>
+    </nav>
   </header>
 
   <section class="hero">
@@ -24,5 +35,7 @@
       </div>
     </div>
   </section>
+
+  <!-- Aquí podrás poner más contenido y fotos -->
 </body>
 </html>
