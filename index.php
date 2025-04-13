@@ -13,12 +13,12 @@
   </style>
 </head>
 <body>
-  <header class="header">
-    <div class="logo">Mi Sitio</div>
-    <nav class="nav-buttons">
-  <a href="registro/registroGeneral.php" class="btn">Accede</a>
-</nav>
-  </header>
+<header class="header">
+  <div class="logo">Mi Sitio</div>
+  <nav class="nav-buttons">
+    <a href="registro/registroGeneral.php" class="btn">Accede</a>
+  </nav>
+</header>
 
   <section class="hero">
     <div class="overlay"></div>

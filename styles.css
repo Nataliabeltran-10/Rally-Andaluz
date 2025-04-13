@@ -9,62 +9,52 @@ body, html {
   background-color: #fff;
 }
 
+/* CABECERA */
 .header {
-  position: fixed;
+  position: absolute; /* Para que se ubique sobre la imagen */
   top: 0;
+  left: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 15px 30px;
-  color: white;
-  font-size: 1em;
+  padding: 20px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 1000;
-  transform: translateY(-100%);
-  transition: transform 0.3s ease;
-}
-
-.header.show {
-  transform: translateY(0);
+  z-index: 10;
+  color: white;
 }
 
 .logo {
   font-weight: bold;
   font-size: 1.3em;
+  color: white;
 }
 
 .nav-buttons {
   display: flex;
-  gap: 20px;
+  justify-content: flex-end;
   align-items: center;
-}
-
-.nav-buttons a {
-  color: white;
-  text-decoration: none;
-  font-size: 0.95em;
-  padding: 8px 16px;
-  border-radius: 20px;
-  transition: background 0.3s;
 }
 
 .nav-buttons .btn {
   background: white;
   color: #333;
   font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background 0.3s ease;
 }
 
 .nav-buttons .btn:hover {
   background: #ddd;
 }
 
-
+/* HERO (sección de la imagen de fondo) */
 .hero {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  height: 60vh; /* MÁS CHICO que 100vh */
+  height: 60vh; /* Más pequeña para dejar espacio a otras secciones */
   position: relative;
   display: flex;
   justify-content: center;
@@ -78,7 +68,7 @@ body, html {
   left: 0;
   height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+  background: rgba(0, 0, 0, 0.5); /* Fondo oscuro transparente */
   z-index: 1;
 }
 
@@ -123,4 +113,7 @@ body, html {
   font-weight: bold;
 }
 
-
+/* OPCIONAL: efecto al hacer scroll si usas script.js */
+.header.show {
+  transform: translateY(0);
+}
