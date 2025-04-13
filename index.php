@@ -16,12 +16,8 @@
   <header class="header">
     <div class="logo">Mi Sitio</div>
     <nav class="nav-buttons">
-      <a href="#">Explorar</a>
-      <a href="#">Licencia</a>
-      <a href="#">Subir foto</a>
-      <a href="#">Iniciar sesión</a>
-      <a href="#" class="btn">Únete</a>
-    </nav>
+  <a href="registro/registroGeneral.php" class="btn">Accede</a>
+</nav>
   </header>
 
   <section class="hero">

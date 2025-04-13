@@ -44,13 +44,9 @@ body, html {
   color: white;
   text-decoration: none;
   font-size: 0.95em;
-  padding: 8px 12px;
+  padding: 8px 16px;
   border-radius: 20px;
   transition: background 0.3s;
-}
-
-.nav-buttons a:hover {
-  background: rgba(255, 255, 255, 0.1);
 }
 
 .nav-buttons .btn {
@@ -58,6 +54,11 @@ body, html {
   color: #333;
   font-weight: bold;
 }
+
+.nav-buttons .btn:hover {
+  background: #ddd;
+}
+
 
 .hero {
   background-repeat: no-repeat;
@@ -121,3 +122,5 @@ body, html {
   cursor: pointer;
   font-weight: bold;
 }
+
+
