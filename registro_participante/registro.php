@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmtInsert->execute([$nombre, $email, password_hash($contraseña, PASSWORD_DEFAULT), 'participante']);
             
             // Redirigir a la página de subida de fotos
-            header("Location: subir_fotos.php");  // Asegúrate de que esta página exista
+            header("Location: galeria/subir_fotos.php");  // Asegúrate de que esta página exista
             exit;  // Asegurar que el script se detiene después de la redirección
         }
     } catch (PDOException $e) {
