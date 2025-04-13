@@ -1,7 +1,7 @@
-/* FUENTE PERSONALIZADA */
+/* FUENTE BONITA */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-/* Reset básico */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -10,57 +10,46 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
-  color: white;
-  margin: 0;
-}
-
-/* SECCIÓN CON FONDO DE IMAGEN */
-.background-section {
+  background: url('fotos/fondo.jpg') no-repeat center center fixed;
+  background-size: cover;
   position: relative;
-  width: 100%;
-  height: 100vh;
-  background: url('fotos/fondo.jpg') no-repeat center center/cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  min-height: 100vh;
+  color: white;
 }
 
-/* Capa gris traslúcida */
-.background-overlay {
-  position: absolute;
+/* Capa gris semitransparente sobre toda la página */
+body::before {
+  content: "";
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(50, 50, 50, 0.6);
-  z-index: 1;
+  background-color: rgba(50, 50, 50, 0.6); /* gris translúcido */
+  z-index: -1; /* detrás del contenido */
 }
 
-/* CONTENIDO SOBRE EL FONDO */
-.background-content {
-  position: relative;
-  z-index: 2;
+/* Contenido general */
+.main-content {
   padding: 40px;
-  max-width: 800px;
+  text-align: center;
 }
 
-.background-content h1 {
+/* TÍTULOS NARANJAS */
+h1, h2 {
   color: orange;
-  font-size: 3.5rem;
-  margin-bottom: 20px;
   font-weight: 700;
+  margin-bottom: 20px;
 }
 
-.background-content p {
-  font-size: 1.3rem;
+/* Texto blanco y limpio */
+p {
+  font-size: 1.2rem;
   line-height: 1.6;
   color: #f0f0f0;
 }
 
-/* Quitamos el video si quedaba algo */
-.video-section,
-.video-container,
-video {
+/* Ocultamos el video */
+.video-section, .video-container, video {
   display: none;
 }

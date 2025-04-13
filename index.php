@@ -11,8 +11,8 @@
 <section class="background-section">
   <div class="background-overlay"></div>
   <div class="background-content">
-    <h1>Bienvenido al Rally</h1>
-    <p>Descubre todo sobre este emocionante evento, explora las rutas, conoce a los participantes y revive los mejores momentos.</p>
+    <h1>Bienvenido al AndaRally</h1>
+    <p>Aquí podras encontrar las mejores fotos de Andalucía</p>
   </div>
 </section>
 
