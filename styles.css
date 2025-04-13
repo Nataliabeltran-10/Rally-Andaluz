@@ -1,65 +1,95 @@
-/* Reset básico y fuente */
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Montserrat', sans-serif;
 }
 
-/* Fondo completo desde HTML */
-.background-wrapper {
+body, html {
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.hero {
+  background: url('fotos/fondo.jpg') no-repeat center center/cover;
+  height: 100vh;
   position: relative;
-  width: 100%;
-  min-height: 100vh;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-/* Capa gris translúcida */
-.background-overlay {
+.overlay {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(50, 50, 50, 0.6);
+  background: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
   z-index: 1;
 }
 
-/* Contenido principal centrado y visible */
-.main-content {
-  position: relative;
+.content {
   z-index: 2;
-  text-align: center;
-  padding: 60px 20px;
   color: white;
-}
-
-/* Títulos modernos y naranja */
-h1, h2 {
-  color: orange;
-  font-size: 3rem;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-}
-
-/* Párrafos legibles y centrados */
-p {
-  font-size: 1.2rem;
-  line-height: 1.6;
   max-width: 800px;
-  margin: 0 auto;
-  color: #f0f0f0;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  padding: 20px;
 }
 
-/* Responsive para móviles */
-@media (max-width: 600px) {
-  h1, h2 {
-    font-size: 2rem;
-  }
+.content h1 {
+  font-size: 3em;
+  margin-bottom: 0.5em;
+}
 
-  p {
-    font-size: 1rem;
-  }
+.content p {
+  font-size: 1.3em;
+  margin-bottom: 1.5em;
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+}
+
+.search-box input {
+  padding: 12px 20px;
+  width: 60%;
+  border: none;
+  border-radius: 25px 0 0 25px;
+  outline: none;
+  font-size: 1em;
+}
+
+.search-box button {
+  padding: 12px 20px;
+  background-color: #ffffff;
+  color: #333;
+  border: none;
+  border-radius: 0 25px 25px 0;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 15px 30px;
+  color: white;
+  font-size: 1.2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+
+.header.show {
+  transform: translateY(0);
+}
+
+.logo {
+  font-weight: bold;
 }
