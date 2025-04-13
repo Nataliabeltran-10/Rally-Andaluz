@@ -5,29 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rally Fotográfico</title>
   <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <div class="background-wrapper" style="background-image: url('fotos/fondo.jpg');">
+<div class="background-wrapper" style="background-image: url('fotos/fondo.jpg');">
     <div class="background-overlay"></div>
 
     <div class="main-content">
-      <h1>Bienvenido al Rally</h1>
-      <p>Explora toda la información sobre este evento increíble. Noticias, rutas, participantes y mucho más.</p>
-
-      <!-- Aquí puedes seguir con más contenido si quieres -->
+      <h1>Bienvenido al AndaRally</h1>
+      <h2>El Rally Fotográfico de Andalucía</h2>
+      <p>Explora, captura y comparte la belleza de nuestra tierra.  
+      ¡Únete y participa en esta experiencia única!</p>
     </div>
   </div>
 
-
-
-<section class="background-section">
-  <div class="background-overlay"></div>
-  <div class="background-content">
-    <h1>Bienvenido al AndaRally</h1>
-    <p>Aquí podras encontrar las mejores fotos de Andalucía</p>
-  </div>
-</section>
 
   <!-- Cabecera que aparece cuando se hace scroll -->
   <header class="header">

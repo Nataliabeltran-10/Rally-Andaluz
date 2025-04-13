@@ -1,4 +1,11 @@
-/* Fondo desde HTML */
+/* Reset básico y fuente */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Fondo completo desde HTML */
 .background-wrapper {
   position: relative;
   width: 100%;
@@ -19,28 +26,40 @@
   z-index: 1;
 }
 
-/* Contenido principal */
+/* Contenido principal centrado y visible */
 .main-content {
   position: relative;
   z-index: 2;
   text-align: center;
   padding: 60px 20px;
   color: white;
-  font-family: 'Montserrat', sans-serif;
 }
 
-/* Títulos */
+/* Títulos modernos y naranja */
 h1, h2 {
   color: orange;
   font-size: 3rem;
   margin-bottom: 20px;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
 }
 
-/* Párrafos */
+/* Párrafos legibles y centrados */
 p {
   font-size: 1.2rem;
   line-height: 1.6;
   max-width: 800px;
   margin: 0 auto;
   color: #f0f0f0;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Responsive para móviles */
+@media (max-width: 600px) {
+  h1, h2 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
 }
