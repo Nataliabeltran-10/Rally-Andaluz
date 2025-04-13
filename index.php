@@ -11,8 +11,8 @@
 <section class="background-section">
   <div class="background-overlay"></div>
   <div class="background-content">
-    <h1>Título Principal</h1>
-    <p>Bienvenido a nuestra página. Aquí puedes encontrar toda la información sobre el evento de rally. Explora las secciones para saber más.</p>
+    <h1>Bienvenido al Rally</h1>
+    <p>Descubre todo sobre este emocionante evento, explora las rutas, conoce a los participantes y revive los mejores momentos.</p>
   </div>
 </section>
 
