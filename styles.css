@@ -1,119 +1,37 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body, html {
-  font-family: Arial, sans-serif;
-  background-color: #fff;
-}
-
-/* CABECERA */
-.header {
-  position: absolute; /* Para que se ubique sobre la imagen */
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 10;
-  color: white;
-}
-
-.logo {
-  font-weight: bold;
-  font-size: 1.3em;
-  color: white;
-}
-
-.nav-buttons {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.nav-buttons .btn {
-  background: white;
-  color: #333;
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 20px;
-  text-decoration: none;
-  transition: background 0.3s ease;
-}
-
-.nav-buttons .btn:hover {
-  background: #ddd;
-}
-
-/* HERO (sección de la imagen de fondo) */
-.hero {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  height: 60vh; /* Más pequeña para dejar espacio a otras secciones */
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.galeria {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
   text-align: center;
 }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
+.galeria h2 {
+  font-size: 2em;
+  margin-bottom: 30px;
+}
+
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.foto {
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.foto img {
   width: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Fondo oscuro transparente */
-  z-index: 1;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
 }
 
-.content {
-  z-index: 2;
-  color: white;
-  max-width: 800px;
-  padding: 20px;
+.foto img:hover {
+  transform: scale(1.05);
 }
-
-.content h1 {
-  font-size: 2.5em;
-  margin-bottom: 0.5em;
-}
-
-.content p {
-  font-size: 1.1em;
-  margin-bottom: 1.5em;
-}
-
-.search-box {
-  display: flex;
-  justify-content: center;
-}
-
-.search-box input {
-  padding: 12px 20px;
-  width: 60%;
-  border: none;
-  border-radius: 25px 0 0 25px;
-  outline: none;
-  font-size: 1em;
-}
-
-.search-box button {
-  padding: 12px 20px;
-  background-color: #ffffff;
-  color: #333;
-  border: none;
-  border-radius: 0 25px 25px 0;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-/* OPCIONAL: efecto al hacer scroll si usas script.js */
-.header.show {
-  transform: translateY(0);
-}
+     
