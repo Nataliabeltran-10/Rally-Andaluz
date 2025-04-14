@@ -48,24 +48,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Registro</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h2>Formulario de Registro</h2>
     <form action="registroGeneral.php" method="POST">
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required><br><br>
+        <input type="text" id="nombre" name="nombre" required>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+        <input type="email" id="email" name="email" required>
 
         <label for="contraseña">Contraseña:</label>
-        <input type="password" id="contraseña" name="contraseña" required><br><br>
+        <input type="password" id="contraseña" name="contraseña" required>
 
         <label for="rol">Tipo de usuario:</label>
         <select id="rol" name="rol" required>
             <option value="participante">Participante</option>
             <option value="usuario_normal">Usuario Normal</option>
-        </select><br><br>
+        </select>
 
         <input type="submit" value="Registrar">
     </form>
