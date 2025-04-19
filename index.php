@@ -11,19 +11,15 @@
   <div class="content-container">
 
     <header>
-      <div class="logo">Mi Sitio</div>
+      <div class="logo">AndaRally</div>
       <nav class="nav-buttons">
         <a href="registro/registroGeneral.php">Accede</a>
       </nav>
     </header>
 
     <section class="hero">
-      <h1>Las mejores fotos y recursos gratis</h1>
-      <p>Imágenes libres de derechos y contenido creativo para tus proyectos</p>
-      <div class="search-box">
-        <input type="text" placeholder="Busca recursos gratuitos...">
-        <button>Buscar</button>
-      </div>
+      <h1>Los mejores lugares y momentos de ANDALUCÍA</h1>
+      <p>Participa con tus mejores fotos e impresionanos con lo mejor de nuestra Andalucía</p>
     </section>
 
     <section class="galeria">
