@@ -3,7 +3,7 @@
 require_once("conexion.php");
 
 // Ruta del fondo (puede venir de base de datos o archivo más adelante si querés)
-$rutaFondo = '/imagen/fondo.jpg';
+$rutaFondo = '/fotos/fondo.jpg';
 
 // Verificar si el formulario fue enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
