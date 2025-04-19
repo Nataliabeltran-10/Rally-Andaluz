@@ -59,8 +59,6 @@ input[type="submit"]:hover {
 body {
   margin: 0;
   padding: 0;
-  background: url('/imagen/fondo.jpg') no-repeat center center fixed;
-  background-size: cover;
   position: relative;
   height: 100vh;
 }
@@ -72,6 +70,10 @@ body::before {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(100, 100, 100, 0.5);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-color: rgba(100, 100, 100, 0.5); /* Capa oscura encima del fondo */
   z-index: 0;
 }

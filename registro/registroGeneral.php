@@ -2,6 +2,9 @@
 // Incluir el archivo de conexión
 require_once("conexion.php");
 
+// Ruta del fondo (puede venir de base de datos o archivo más adelante si querés)
+$rutaFondo = '/imagen/fondo.jpg';
+
 // Verificar si el formulario fue enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombre = $_POST['nombre'];
@@ -47,29 +50,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Registro</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: url('fotos/fondo.jpg') no-repeat center center fixed;
-            background-size: cover;
-            position: relative;
-            height: 100vh;
-        }
-
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            background-color: rgba(100, 100, 100, 0.5);
-            z-index: 0;
-        }
-    </style>
 </head>
-<body>
+<body data-fondo="<?= $rutaFondo ?>">
+
     <h2>Formulario de Registro</h2>
     <form action="registroGeneral.php" method="POST">
         <label for="nombre">Nombre:</label>
@@ -89,5 +72,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <input type="submit" value="Registrar">
     </form>
+
+    <script>
+        // Aplica dinámicamente el fondo desde el atributo data-fondo
+        const fondo = document.body.getAttribute('data-fondo');
+        if (fondo) {
+            document.body.style.background = `url('${fondo}') no-repeat center center fixed`;
+            document.body.style.backgroundSize = 'cover';
+        }
+    </script>
 </body>
 </html>
