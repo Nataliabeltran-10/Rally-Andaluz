@@ -7,9 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombre = $_POST['nombre'];
     $email = $_POST['email'];
     $contraseña = $_POST['contraseña'];
-    $rol = $_POST['rol']; // Capturar el rol seleccionado
+    $rol = $_POST['rol'];
 
-    // Validar si el nombre ya existe en la base de datos
     try {
         $sql = "SELECT * FROM usuarios WHERE nombre = ?";
         $stmt = $conn->prepare($sql);
@@ -25,14 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $nombre,
                 $email,
                 password_hash($contraseña, PASSWORD_DEFAULT),
-                $rol // Guardar el rol elegido
+                $rol
             ]);
 
-            // Redirigir según el rol
             if ($rol == 'participante') {
                 header("Location: subir_fotos.php");
             } else {
-                header("Location: index.php"); // o donde quieras enviar a los usuarios generales
+                header("Location: index.php");
             }
             exit;
         }
@@ -49,6 +47,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Registro</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('fotos/fondo.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+            height: 100vh;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(100, 100, 100, 0.5);
+            z-index: 0;
+        }
+    </style>
 </head>
 <body>
     <h2>Formulario de Registro</h2>

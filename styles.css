@@ -1,20 +1,115 @@
+/* Fondo y capa oscura */
+body {
+  background-image: url('fotos/fondo.jpg');
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.overlay {
+  background-color: rgba(50, 50, 50, 0.6);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.content-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Encabezado */
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+
+header .logo {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+header .nav-buttons a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: #4CAF50;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+header .nav-buttons a:hover {
+  background-color: #45a049;
+}
+
+/* Hero / Portada */
+.hero {
+  text-align: center;
+  color: white;
+  padding: 100px 20px 60px;
+}
+
+.hero h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
+
+.search-box input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  width: 250px;
+  margin-right: 10px;
+}
+
+.search-box button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.search-box button:hover {
+  background-color: #45a049;
+}
+
+/* Galería */
 .galeria {
   padding: 40px 20px;
-  background-color: #f9f9f9;
+  background-color: rgba(255, 255, 255, 0.9);
   text-align: center;
+  margin: 0 auto;
+  max-width: 1200px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
 .galeria h2 {
   font-size: 2em;
   margin-bottom: 30px;
+  color: #333;
 }
 
 .galeria-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
 .foto {
@@ -34,4 +129,3 @@
 .foto img:hover {
   transform: scale(1.05);
 }
-     
