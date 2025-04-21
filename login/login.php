@@ -2,11 +2,8 @@
 require_once("conexion.php");
 
 $rutaFondo = '../fotos/fondo.jpg';
-session_start();
 
-$error = "";
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombre = $_POST['nombre'];
     $contraseña = $_POST['contraseña'];
 
@@ -14,16 +11,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql = "SELECT * FROM usuarios WHERE nombre = ?";
         $stmt = $conn->prepare($sql);
         $stmt->execute([$nombre]);
-        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+        $usuario = $stmt->fetch();
 
         if ($usuario && password_verify($contraseña, $usuario['contraseña'])) {
             header("Location: GaleriaFotos.php");
             exit;
         } else {
-            $error = "El usuario no existe o la contraseña es incorrecta.";
+            header("Location: login.php?error=1");
+            exit;
         }
     } catch (PDOException $e) {
-        $error = "Error al consultar la base de datos: " . $e->getMessage();
+        echo "Error en la base de datos: " . $e->getMessage();
     }
 }
 ?>
@@ -32,48 +30,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio de Sesión</title>
+    <title>Iniciar Sesión</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body data-fondo="<?= $rutaFondo ?>">
 
-    <h2>Iniciar Sesión</h2>
-    <form action="login.php" method="POST">
-        <label for="nombre">Nombre de usuario:</label>
-        <input type="text" id="nombre" name="nombre" required>
+<h2>Iniciar Sesión</h2>
+<form action="login.php" method="POST">
+    <label for="nombre">Nombre de usuario:</label>
+    <input type="text" id="nombre" name="nombre" required>
 
-        <label for="contraseña">Contraseña:</label>
-        <input type="password" id="contraseña" name="contraseña" required>
+    <label for="contraseña">Contraseña:</label>
+    <input type="password" id="contraseña" name="contraseña" required>
 
-        <input type="submit" value="Iniciar Sesión">
-    </form>
+    <input type="submit" value="Iniciar Sesión">
+</form>
 
-    <!-- Modal de error -->
-    <div id="errorModal" class="modal">
-        <div class="modal-content">
-            <p><?= $error ?></p>
-            <button class="close-btn" onclick="cerrarModal()">Cancelar</button>
-        </div>
-    </div>
+<!-- Modal de error -->
+<div id="errorModal" class="modal">
+  <div class="modal-content">
+    <p>El usuario no existe o la contraseña es incorrecta</p>
+    <button class="close-btn" onclick="cerrarModal()">Cancelar</button>
+  </div>
+</div>
 
-    <script>
-        // Aplica fondo
-        const fondo = document.body.getAttribute('data-fondo');
-        if (fondo) {
-            document.body.style.background = `url('${fondo}') no-repeat center center fixed`;
-            document.body.style.backgroundSize = 'cover';
-        }
+<script>
+  function mostrarModal() {
+    document.getElementById("errorModal").style.display = "flex";
+  }
 
-        // Mostrar el modal si hay error
-        <?php if (!empty($error)): ?>
-            document.getElementById("errorModal").style.display = "block";
-        <?php endif; ?>
+  function cerrarModal() {
+    document.getElementById("errorModal").style.display = "none";
+  }
 
-        // Función para cerrar el modal
-        function cerrarModal() {
-            document.getElementById("errorModal").style.display = "none";
-        }
-    </script>
+  <?php if (isset($_GET['error']) && $_GET['error'] == '1'): ?>
+    window.onload = function() {
+      mostrarModal();
+    };
+  <?php endif; ?>
+
+  // Aplica el fondo
+  const fondo = document.body.getAttribute('data-fondo');
+  if (fondo) {
+    document.body.style.background = `url('${fondo}') no-repeat center center fixed`;
+    document.body.style.backgroundSize = 'cover';
+  }
+</script>
+
 </body>
 </html>

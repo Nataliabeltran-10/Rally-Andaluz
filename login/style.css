@@ -28,8 +28,8 @@ form {
   }
   
   input[type="text"],
-  input[type="email"],
   input[type="password"],
+  input[type="email"],
   select {
     width: 100%;
     padding: 10px;
@@ -78,43 +78,42 @@ form {
     z-index: 0;
   }
   
-  /* ----------------- */
-  /* ESTILOS PARA MODAL */
-  /* ----------------- */
-  
+  /* Estilo del modal */
   .modal {
     display: none;
     position: fixed;
     z-index: 9999;
-    left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
     background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     animation: fadeIn 0.3s ease-in-out;
   }
   
   .modal-content {
     background-color: #fff;
-    margin: 15% auto;
-    padding: 30px;
-    border-radius: 10px;
-    width: 80%;
+    padding: 30px 20px;
+    border-radius: 15px;
     max-width: 400px;
+    width: 90%;
     text-align: center;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
     animation: slideIn 0.3s ease-out;
+    border: 2px solid black;
   }
   
   .modal-content p {
     margin-bottom: 20px;
-    font-size: 1.1em;
+    font-size: 1.2em;
     color: #333;
   }
   
   .close-btn {
-    background-color: #dc3545;
+    background-color: #007BFF;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -125,10 +124,9 @@ form {
   }
   
   .close-btn:hover {
-    background-color: #a72835;
+    background-color: #0056b3;
   }
   
-  /* Animaciones */
   @keyframes fadeIn {
     from {opacity: 0;}
     to {opacity: 1;}
