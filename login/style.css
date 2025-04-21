@@ -142,4 +142,20 @@ form {
       opacity: 1;
     }
   }
+
+  .register-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.9em;
+  }
+  
+  .register-link a {
+    color: #007BFF;
+    text-decoration: none;
+  }
+  
+  .register-link a:hover {
+    text-decoration: underline;
+  }
+  
   

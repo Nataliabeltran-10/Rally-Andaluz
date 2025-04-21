@@ -1,0 +1,47 @@
+/* Contenedor del form, centrado y bonito */
+.form-container {
+    position: relative;
+    z-index: 1;
+    max-width: 500px;
+    margin: 80px auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  }
+  
+  /* Titular del formulario */
+  .form-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+  }
+  
+  /* Textarea estilo similar a inputs */
+  textarea {
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 8px;
+    background: #f2f2f2;
+    resize: vertical;
+  }
+  
+  /* File input margen */
+  input[type="file"] {
+    margin-bottom: 20px;
+  }
+  
+  /* Mensaje de error */
+  .error-message {
+    max-width: 500px;
+    margin: 0 auto 20px auto;
+    padding: 12px 20px;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
