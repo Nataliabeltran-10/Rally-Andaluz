@@ -1,13 +1,11 @@
 <?php
-// Incluir conexión a la base de datos
 require_once("conexion.php");
 
-// Ruta del fondo
 $rutaFondo = '../fotos/fondo.jpg';
+session_start();
 
-session_start(); // Si más adelante quieres usar sesiones
+$error = "";
 
-// Verifica si se envió el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = $_POST['nombre'];
     $contraseña = $_POST['contraseña'];
@@ -19,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($usuario && password_verify($contraseña, $usuario['contraseña'])) {
-            // Usuario válido, redirigir a GaleriaFotos.php
             header("Location: GaleriaFotos.php");
             exit;
         } else {
@@ -52,18 +49,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="submit" value="Iniciar Sesión">
     </form>
 
-    <?php if (isset($error)): ?>
-        <script>
-            alert("<?= $error ?>");
-        </script>
-    <?php endif; ?>
+    <!-- Modal de error -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <p><?= $error ?></p>
+            <button class="close-btn" onclick="cerrarModal()">Cancelar</button>
+        </div>
+    </div>
 
     <script>
-        // Aplica fondo dinámicamente
+        // Aplica fondo
         const fondo = document.body.getAttribute('data-fondo');
         if (fondo) {
             document.body.style.background = `url('${fondo}') no-repeat center center fixed`;
             document.body.style.backgroundSize = 'cover';
+        }
+
+        // Mostrar el modal si hay error
+        <?php if (!empty($error)): ?>
+            document.getElementById("errorModal").style.display = "block";
+        <?php endif; ?>
+
+        // Función para cerrar el modal
+        function cerrarModal() {
+            document.getElementById("errorModal").style.display = "none";
         }
     </script>
 </body>
