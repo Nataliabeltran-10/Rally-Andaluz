@@ -13,7 +13,7 @@
     <header>
       <div class="logo">AndaRally</div>
       <nav class="nav-buttons">
-        <a href="registro/registroGeneral.php">Accede</a>
+        <a href="login/login.php">Accede</a>
       </nav>
     </header>
 
