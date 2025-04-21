@@ -63,12 +63,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     document.getElementById("errorModal").style.display = "none";
   }
 
-  <?php if (isset($_GET['error']) && $_GET['error'] == '1'): ?>
-    window.onload = function() {
-      mostrarModal();
-    };
-  <?php endif; ?>
-
+  window.onload = function() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('error') && params.get('error') === '1') {
+        mostrarModal();
+        // Limpia la URL para que no se repita el modal al refrescar
+        history.replaceState({}, document.title, window.location.pathname);
+    }
+};
   // Aplica el fondo
   const fondo = document.body.getAttribute('data-fondo');
   if (fondo) {
