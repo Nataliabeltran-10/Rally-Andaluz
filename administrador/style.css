@@ -1,0 +1,79 @@
+/* Fondo general con imagen */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: url('../fotos/fondo.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Título centrado */
+h1 {
+    text-align: center;
+    margin-top: 30px;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* Contenedor de la galería de fotos */
+.galeria-admin {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 40px auto;
+    max-width: 1200px;
+}
+
+/* Cada tarjeta de imagen */
+.foto-card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    text-align: center;
+}
+
+/* Imagen en la tarjeta */
+.foto-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Título y descripción de la imagen */
+.foto-card h3 {
+    margin: 10px 0 5px;
+}
+
+.foto-card p {
+    font-size: 0.95em;
+    margin-bottom: 15px;
+}
+
+/* Formulario de botones */
+.foto-card form {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Botones */
+.foto-card button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.foto-card .admitir {
+    background-color: #28a745;
+    color: white;
+}
+
+.foto-card .rechazar {
+    background-color: #dc3545;
+    color: white;
+}

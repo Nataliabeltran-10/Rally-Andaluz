@@ -22,7 +22,7 @@ $rutaFondo = '../fotos/fondo.jpg';
         <img src="../fotos/concurso_1.jpg" alt="Lugares Bonitos">
         <span class="title">Lugares Bonitos</span>
       </a>
-      <a href="concurso_tradicciones.php" class="cuadro">
+      <a href="../concursos/concurso_tradiciones.php" class="cuadro">
         <img src="../fotos/concurso_2.jpg" alt="Tradiciones">
         <span class="title">Tradiciones</span>
       </a>

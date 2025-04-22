@@ -22,19 +22,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Redirigimos según rol
                 switch ($usuario['rol']) {
-                    case 'participante':
-                        header("Location: ../participante/pagina_participante.php");
-                        break;
-                    case 'usuario_normal':
-                        header("Location: ../usuarios/pagina_usuario_normal.php");
-                        break;
-                    case 'administrador':
-                        header("Location: ../usuarios/pagina_admin.php");
-                        break;
-                    default:
-                        // Por si se añade un rol no manejado
-                        header("Location: login.php?error=1");
-                }
+                  case 'participante':
+                      header("Location: ../participante/pagina_participante.php");
+                      break;
+                  case 'usuario_normal':
+                      header("Location: ../usuarios/pagina_usuario_normal.php");
+                      break;
+                  case 'administrador':
+                      header("Location: ../administrador/pagina_admin.php");
+                      break;
+              }
                 exit;
             } else {
                 header("Location: login.php?error=1");
@@ -66,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="submit" value="Iniciar Sesión">
 
     <div class="register-link">
-      <a href="registro/registroGeneral.php">¿No tienes cuenta? Regístrate</a>
+      <a href="../registro/registroGeneral.php">¿No tienes cuenta? Regístrate</a>
     </div>
   </form>
 

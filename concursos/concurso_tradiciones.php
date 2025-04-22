@@ -54,13 +54,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Concurso Lugares Bonitos</title>
+  <title>Concurso Tradiciones</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body data-fondo="<?= $rutaFondo ?>">
 
   <div class="form-container">
-    <h2>Sube tu foto de “Lugares Bonitos”</h2>
+    <h2>Sube tu foto de “Las mejores tradiciones”</h2>
 
     <?php if ($error): ?>
       <div class="error-message"><?= htmlspecialchars($error) ?></div>
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
     <?php endif; ?>
 
-    <form action="concurso_lugares.php" method="POST" enctype="multipart/form-data">
+    <form action="concurso_tradiciones.php" method="POST" enctype="multipart/form-data">
       <label for="titulo">Título de la imagen:</label>
       <input type="text" id="titulo" name="titulo" required>
 
