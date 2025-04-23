@@ -27,6 +27,7 @@
       <div class="galeria-grid">
         <?php
         include 'conexion.php';
+        // Consulta para obtener solo 6 fotos admitidas
         $query = "SELECT imagen FROM fotos WHERE estado = 'admitida' ORDER BY fecha_subida DESC LIMIT 6";
         $resultado = mysqli_query($conexion, $query);
 
@@ -37,8 +38,11 @@
             // Asumimos JPEG; cámbialo a 'image/png' si necesitas otro formato
             $mime = 'image/jpeg';
 
+            // Agregamos un enlace para redirigir al login al hacer clic en la imagen
             echo '<div class="foto">';
+            echo '<a href="login/login.php">';
             echo '<img src="data:' . $mime . ';base64,' . $imagen_base64 . '" alt="Foto participante">';
+            echo '</a>';
             echo '</div>';
           }
         } else {
