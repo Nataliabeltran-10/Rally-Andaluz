@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                       header("Location: ../usuarios/pagina_usuario_normal.php");
                       break;
                   case 'administrador':
-                      header("Location: ../administrador/pagina_admin.php");
+                      header("Location: /RALLY-ANDALUZ/administrador/pagina_admin.php");
                       break;
               }
                 exit;
