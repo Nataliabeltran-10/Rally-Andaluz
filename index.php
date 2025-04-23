@@ -32,8 +32,13 @@
 
         if ($resultado && mysqli_num_rows($resultado) > 0) {
           while ($fila = mysqli_fetch_assoc($resultado)) {
+            // Convertimos el BLOB a base64
+            $imagen_base64 = base64_encode($fila['imagen']);
+            // Asumimos JPEG; cámbialo a 'image/png' si necesitas otro formato
+            $mime = 'image/jpeg';
+
             echo '<div class="foto">';
-            echo '<img src="fotos/' . htmlspecialchars($fila['imagen']) . '" alt="Foto participante">';
+            echo '<img src="data:' . $mime . ';base64,' . $imagen_base64 . '" alt="Foto participante">';
             echo '</div>';
           }
         } else {
