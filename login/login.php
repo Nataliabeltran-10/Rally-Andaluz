@@ -3,6 +3,7 @@ require_once("conexion.php");
 session_start();
 
 $rutaFondo = '../fotos/fondo.jpg';
+$mostrarError = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre     = trim($_POST['nombre']);
@@ -22,20 +23,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Redirigimos según rol
                 switch ($usuario['rol']) {
-                  case 'participante':
-                      header("Location: ../participante/pagina_participante.php");
-                      break;
-                  case 'usuario_normal':
-                      header("Location: ../usuarios/pagina_usuario_normal.php");
-                      break;
-                  case 'administrador':
-                      header("Location: ../administrador/pagina_admin.php");
-                      break;
-              }
+                    case 'participante':
+                        header("Location: ../participante/pagina_participante.php");
+                        break;
+                    case 'usuario_normal':
+                        header("Location: ../usuarios/pagina_usuario_normal.php");
+                        break;
+                    case 'administrador':
+                        header("Location: ../administrador/pagina_admin.php");
+                        break;
+                }
                 exit;
             } else {
-                header("Location: login.php?error=1");
-                exit;
+                $mostrarError = true;
             }
         } catch (PDOException $e) {
             die("Error en la base de datos: " . $e->getMessage());
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </form>
 
   <!-- Modal de error -->
-  <div id="errorModal" class="modal">
+  <div id="errorModal" class="modal" style="<?= $mostrarError ? 'display: flex;' : 'display: none;' ?>">
     <div class="modal-content">
       <p>El usuario no existe o la contraseña es incorrecta</p>
       <button class="close-btn" onclick="cerrarModal()">Cancelar</button>
@@ -76,19 +76,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </div>
 
   <script>
-    function mostrarModal() {
-      document.getElementById("errorModal").style.display = "flex";
-    }
     function cerrarModal() {
       document.getElementById("errorModal").style.display = "none";
     }
-    window.onload = function() {
-      const params = new URLSearchParams(window.location.search);
-      if (params.get('error') === '1') {
-        mostrarModal();
-        history.replaceState({}, document.title, window.location.pathname);
-      }
-    };
+
     // Fondo dinámico
     const fondo = document.body.getAttribute('data-fondo');
     if (fondo) {
