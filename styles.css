@@ -50,66 +50,53 @@ header .nav-buttons a:hover {
   background-color: #45a049;
 }
 
-/* Hero / Portada */
-.hero {
-  text-align: center;
+/* Estilos para el perfil */
+.perfil-container {
+  position: relative;
+  display: inline-block;
+}
+
+.perfil-circulo {
+  width: 40px;
+  height: 40px;
+  background-color: #4CAF50;
   color: white;
-  padding: 100px 20px 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.hero h1 {
-  font-size: 3em;
-  margin-bottom: 10px;
+.perfil-circulo:hover {
+  background-color: #45a049;
 }
 
-.hero p {
-  font-size: 1.2em;
-  margin-bottom: 30px;
-}
-
-/* Galería */
-.galeria {
-  padding: 40px 20px;
-  background-color: rgba(255, 255, 255, 0.9);
-  text-align: center;
-  margin: 0 auto;
-  max-width: 1000px;
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-}
-
-.galeria h2 {
-  font-size: 2em;
-  margin-bottom: 30px;
-  color: #333;
-}
-
-.galeria-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 20px;
-  justify-items: center;
-}
-
-.foto {
-  width: 160px;
-  height: 160px;
-  background-color: #fff;
-  padding: 8px;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s ease;
-}
-
-.foto:hover {
-  transform: scale(1.05);
-}
-
-.foto img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.perfil-menu {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: white;
+  color: black;
   border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  text-align: left;
+  min-width: 200px;
+  z-index: 10;
+}
+
+.perfil-menu a {
+  display: block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.perfil-menu a:hover {
+  text-decoration: underline;
 }
