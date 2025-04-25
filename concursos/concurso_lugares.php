@@ -30,18 +30,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Leer la imagen como binario
             $imagenData = file_get_contents($_FILES['imagen']['tmp_name']);
 
-            // Insertar en BD (campo imagen debe ser BLOB o LONGBLOB)
-            $sql = "INSERT INTO fotos (usuario_id, imagen, descripcion, titulo_imagen)
-                    VALUES (?, ?, ?, ?)";
+            // Insertar en BD (ahora incluye el campo 'concurso')
+            $sql = "INSERT INTO fotos (usuario_id, imagen, descripcion, titulo_imagen, concurso)
+                    VALUES (?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
             $stmt->execute([
                 $_SESSION['usuario_id'],
                 $imagenData,
                 $descripcion,
-                $titulo
+                $titulo,
+                'Lugares'
             ]);
 
-            // Mensaje de éxito
             $mensajeExito = "Tu participación ha sido enviada y está pendiente de revisión.";
         } else {
             $error = "Debes seleccionar una imagen.";
@@ -90,7 +90,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </div>
 
   <script>
-    // Fondo dinámico
     const fondo = document.body.getAttribute('data-fondo');
     if (fondo) {
       document.body.style.background = `url('${fondo}') no-repeat center center fixed`;
