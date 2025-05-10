@@ -61,3 +61,32 @@
     pointer-events: none; /* para que el click pase al enlace */
   }
   
+  /* Encabezado */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+
+header .logo {
+  font-size: 1.8em;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+header .nav-buttons a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: #FF5722;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+header .nav-buttons a:hover {
+  background-color: #e64a19;
+}

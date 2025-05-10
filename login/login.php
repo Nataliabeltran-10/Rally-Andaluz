@@ -2,6 +2,7 @@
 require_once("conexion.php");
 session_start();
 
+// Ruta de fondo para el login
 $rutaFondo = '../fotos/fondo.jpg';
 $mostrarError = false;
 
@@ -11,15 +12,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($nombre !== '' && $contraseña !== '') {
         try {
+            // Verificar si el usuario existe en la base de datos
             $sql  = "SELECT * FROM usuarios WHERE nombre = ?";
             $stmt = $conn->prepare($sql);
             $stmt->execute([$nombre]);
             $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
+            // Si el usuario existe y la contraseña es correcta
             if ($usuario && password_verify($contraseña, $usuario['contraseña'])) {
-                // Guardamos datos en sesión
-                $_SESSION['usuario_id']  = $usuario['id'];
-                $_SESSION['usuario_rol'] = $usuario['rol'];
+                // Guardamos datos en la sesión
+                $_SESSION['usuario_id']     = $usuario['id'];
+                $_SESSION['usuario_rol']    = $usuario['rol'];
+                $_SESSION['usuario_nombre'] = $usuario['nombre'];
+                $_SESSION['usuario_email']  = $usuario['email'];
 
                 // Redirigimos según rol
                 switch ($usuario['rol']) {
@@ -43,6 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -50,8 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <title>Iniciar Sesión</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body data-fondo="<?= $rutaFondo ?>">
+<body data-fondo="<?= htmlspecialchars($rutaFondo) ?>">
 
+  <!-- Eliminar el header y mostrar solo el contenido principal -->
+
+  <!-- Formulario de Login -->
   <h2>Iniciar Sesión</h2>
   <form action="login.php" method="POST">
     <label for="nombre">Nombre de usuario:</label>
@@ -87,5 +96,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       document.body.style.backgroundSize = 'cover';
     }
   </script>
+
 </body>
 </html>

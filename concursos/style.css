@@ -27,7 +27,7 @@ h2 {
   color: white;
   margin-top: 40px;
   font-size: 2em;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 label {
@@ -72,36 +72,42 @@ input[type="submit"]:hover {
   left: 50%;
   transform: translate(-50%, -50%); /* Centrado en la pantalla */
   background: white;
-  padding: 25px 35px;
+  padding: 15px 25px; /* Reducir el padding para hacerlo más pequeño */
   border-radius: 15px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   text-align: center;
   z-index: 9999; /* Para que esté sobre otros elementos */
-  font-size: 18px;
+  font-size: 14px; /* Reducir el tamaño de la fuente */
   color: #000;
   max-width: 90%;
-  width: 400px;
+  width: 350px; /* Reducir el ancho para hacerlo más pequeño */
   border: 2px solid black;
   font-family: Arial, sans-serif;
 }
 
 .success-message p {
   margin: 0 0 15px 0;
-  font-size: 18px;
+  font-size: 14px; /* Reducir tamaño de la fuente en el mensaje */
 }
 
 .success-message form {
   display: inline-block;
+  margin-top: 10px; /* Añadir un poco de espacio arriba del botón */
 }
 
 .success-message button {
-  padding: 10px 25px;
+  padding: 8px 20px; /* Reducir el tamaño del padding */
   background-color: #015e71;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px; /* Reducir tamaño de la fuente */
+  transition: background-color 0.3s ease;
+}
+
+.success-message button:hover {
+  background-color: #014c57; /* Cambio en el color al pasar el cursor */
 }
 
 /* Para los mensajes de error */

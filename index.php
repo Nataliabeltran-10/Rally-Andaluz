@@ -1,92 +1,107 @@
-<?php session_start(); ?>
+<?php
+session_start();
+include 'conexion.php';
+$rutaBase = ''; // estamos en la raíz
+
+// Obtener 6 fotos admitidas
+$query = "SELECT imagen, concurso FROM fotos WHERE estado = 'admitida' ORDER BY fecha_subida DESC LIMIT 6";
+$resultado = mysqli_query($conexion, $query);
+
+$fotos = [];
+if ($resultado && mysqli_num_rows($resultado) > 0) {
+    while ($fila = mysqli_fetch_assoc($resultado)) {
+        $fotos[] = [
+            'imagen' => base64_encode($fila['imagen']),
+            'concurso' => $fila['concurso']
+        ];
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inicio - AndaRally</title>
+  <link rel="stylesheet" href="header/style.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
+  <?php include 'header/header.php'; ?>
+
   <div class="overlay"></div>
   <div class="content-container">
 
-    <header>
-      <div class="logo">AndaRally</div>
-      <nav class="nav-buttons">
-        <?php if (isset($_SESSION['usuario_id'])): ?>
-          <!-- Usuario logueado -->
-          <div class="perfil-container">
-            <div class="perfil-circulo" onclick="togglePerfilMenu()">
-              <?= strtoupper(isset($_SESSION['usuario_nombre']) ? substr($_SESSION['usuario_nombre'], 0, 1) : '') ?>
-            </div>
-            <div class="perfil-menu" id="perfilMenu">
-              <p><strong><?= isset($_SESSION['usuario_nombre']) ? htmlspecialchars($_SESSION['usuario_nombre']) : '' ?></strong></p>
-              <p><?= isset($_SESSION['usuario_email']) ? htmlspecialchars($_SESSION['usuario_email']) : '' ?></p>
-              <a href="editar_perfil.php">Editar perfil</a>
-              <a href="logout.php">Cerrar sesión</a>
-            </div>
-          </div>
-        <?php else: ?>
-          <!-- No logueado -->
-          <a href="login/login.php">Acceder</a>
-        <?php endif; ?>
-      </nav>
-    </header>
-
     <section class="hero">
       <h1>Los mejores lugares y momentos de ANDALUCÍA</h1>
-      <p>Participa con tus mejores fotos e impresionanos con lo mejor de nuestra Andalucía</p>
+      <p>Participa en nuestro Rally Fotográfico y comparte tu mirada sobre nuestra tierra.</p>
+      <p>Entra en uno de los concursos y deja tu huella visual: <strong>“Lugares de Andalucía”</strong> o <strong>“Tradiciones Andaluzas”</strong>.</p>
+
+      <div class="botones-concursos">
+        <div class="concurso">
+          <a class="boton-concurso" href="galeria/galeria.php">📍 Concurso de Lugares</a>
+          <div class="reloj" id="reloj-lugares"></div>
+        </div>
+        <div class="concurso">
+          <a class="boton-concurso" href="galeria/galeria_tradiciones.php">🎭 Concurso de Tradiciones</a>
+          <div class="reloj" id="reloj-tradiciones"></div>
+        </div>
+        <div class="concurso">
+          <a class="boton-concurso" href="rankings\rankings.php">Rankings</a>
+        </div>
+      </div>
     </section>
 
     <section class="galeria">
       <h2>Fotos destacadas de participantes</h2>
       <div class="galeria-grid">
-        <?php
-        include 'conexion.php';
-        // Consulta para obtener solo 6 fotos admitidas
-        $query = "SELECT imagen FROM fotos WHERE estado = 'admitida' ORDER BY fecha_subida DESC LIMIT 6";
-        $resultado = mysqli_query($conexion, $query);
-
-        if ($resultado && mysqli_num_rows($resultado) > 0) {
-          while ($fila = mysqli_fetch_assoc($resultado)) {
-            // Convertimos el BLOB a base64
-            $imagen_base64 = base64_encode($fila['imagen']);
-            // Asumimos JPEG; cámbialo a 'image/png' si necesitas otro formato
-            $mime = 'image/jpeg';
-
-            // Agregamos un enlace para redirigir al login al hacer clic en la imagen
-            echo '<div class="foto">';
-            echo '<a href="login/login.php">';
-            echo '<img src="data:' . $mime . ';base64,' . $imagen_base64 . '" alt="Foto participante">';
-            echo '</a>';
-            echo '</div>';
-          }
-        } else {
-          echo '<p>No hay fotos admitidas aún.</p>';
-        }
-
-        mysqli_close($conexion);
-        ?>
+        <?php foreach ($fotos as $foto): ?>
+          <div class="foto-tarjeta">
+            <div class="etiqueta"><?= ucfirst($foto['concurso']) ?></div>
+            <a href="<?= isset($_SESSION['usuario_id']) 
+                ? ($foto['concurso'] === 'lugares' 
+                  ? 'galeria/galeria.php' 
+                  : 'galeria/galeria_tradiciones.php') 
+                : 'login/login.php' ?>">
+              <img src="data:image/jpeg;base64,<?= $foto['imagen']; ?>" alt="Foto participante" />
+            </a>
+          </div>
+        <?php endforeach; ?>
       </div>
     </section>
 
   </div>
 
   <script>
-    function togglePerfilMenu() {
-      const menu = document.getElementById("perfilMenu");
-      menu.style.display = (menu.style.display === "block") ? "none" : "block";
+    function iniciarCuentaAtras(id, fechaFinStr) {
+      const reloj = document.getElementById(id);
+      const fechaFin = new Date(fechaFinStr).getTime();
+
+      const actualizar = () => {
+        const ahora = new Date().getTime();
+        const restante = fechaFin - ahora;
+
+        if (restante <= 0) {
+          reloj.innerHTML = "⏰ Concurso finalizado";
+          return;
+        }
+
+        const dias = Math.floor(restante / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((restante % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutos = Math.floor((restante % (1000 * 60 * 60)) / (1000 * 60));
+        const segundos = Math.floor((restante % (1000 * 60)) / 1000);
+
+        reloj.innerHTML = `⏳ ${dias}d ${horas}h ${minutos}m ${segundos}s`;
+      };
+
+      actualizar();
+      setInterval(actualizar, 1000);
     }
 
-    // Ocultar el menú de perfil al hacer clic fuera
-    window.onclick = function(event) {
-      const menu = document.getElementById("perfilMenu");
-      const circle = document.querySelector('.perfil-circulo');
-      if (menu && !menu.contains(event.target) && event.target !== circle) {
-        menu.style.display = "none";
-      }
-    }
+    iniciarCuentaAtras('reloj-lugares', '2025-06-15T23:59:59');
+    iniciarCuentaAtras('reloj-tradiciones', '2025-06-20T23:59:59');
   </script>
+
 </body>
 </html>
